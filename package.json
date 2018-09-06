@@ -1,0 +1,25 @@
+{
+  "name": "bigbCorrelationVis",
+  "version": "5.5.0",
+  "authors": [
+  "suwonchon <masuwonchon@gmail.com"
+  ],
+  "scripts": {
+    "lint": "eslint",
+    "start": "plugin-helpers start",
+    "test:server": "plugin-helpers test:server",
+    "test:browser": "plugin-helpers test:browser",
+    "build": "plugin-helpers build",
+    "postinstall": "plugin-helpers postinstall"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/masuwonchon/bigb.git"
+  },
+  "dependencies" : {
+    "vis": "4.16.1",
+    "randomcolor": "0.5.0",
+    "css-element-queries": "0.3.2"
+  }
+}
