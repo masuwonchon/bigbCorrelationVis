@@ -9,10 +9,44 @@ signature=$3
 
 echo "src ip: $src, dest ip: $dest, signature: $signature"
 
+
+SignatureList=(
+"ET EXPLOIT Cisco Telnet Buffer Overflow"
+"ET DOS Cisco Router HTTP DoS"
+"ET EXPLOIT Catalyst SSH protocol mismatch"
+"ET DELETED Cisco IOS HTTP DoS"
+"ET DOS Cisco 514 UDP flood DoS"
+"ET DOS Catalyst memory leak attack"
+"ET DELETED Cisco %u IDS evasion"
+"ET DELETED Cisco IOS HTTP server DoS"
+"ET P2P Phatbot Control Connection"
+"ET DELETED SSL Bomb DoS Attempt"
+"ET NETBIOS NII Microsoft ASN.1 Library Buffer Overflow Exploit"
+"ET DELETED rcprograms"
+"ET MALWARE Gator Cookie"
+"ET USER_AGENTS Gator Agent Traffic"
+"ET EXPLOIT CVS server heap overflow attempt (target BSD)"
+"ET NETBIOS LSA exploit"
+"ET NETBIOS MS04011 Lsasrv.dll RPC exploit (WinXP)"
+"ET POLICY Hotmail Inbox Access"
+"ET POLICY Hotmail Message Access"
+)
+
+#sidmap.txt: https://rules.emergingthreats.net/sidmap/complete-sidmap.txt
+#echo "MESSAGE: $MESSAGES"
+srcip=$((RANDOM%256)).$((RANDOM%256)).$((RANDOM%256)).$((RANDOM%256))
+srcport=$((RANDOM))
+dstip=$((RANDOM%256)).$((RANDOM%256)).$((RANDOM%256)).$((RANDOM%256))
+dstport=$((RANDOM))
+signaturenum=$((RANDOM%10))
+
+echo "$srcip:$srcport -> $dstip:$dstport : message: ${SignatureList[$signaturenum]}"
+
+
 NC="/bin/nc"
 # Where are we sending messages from / to?
-ORIG_IP="192.168.56.207"
-DEST_IP="192.168.56.206"
+ORIG_IP="192.168.1.212"
+DEST_IP="192.168.1.213"
 # List of messages.
 SIGNATURE=$
 MESSAGES=("Error Event" "Warning Event" "Info Event")
@@ -50,7 +84,7 @@ COUNT=1
 #PRIORITIES=(0 1 2 3 4 5 6 7)
 PRIORITIES=(169)
 
-echo "MESSAGE: $MESSAGES"
+exit
 
 while [ 1 ]
 do
